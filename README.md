@@ -5,4 +5,6 @@
 [Assignment 3](Assignment3.html)\
 [Assignment 4](Assignment4.html)\
 [Assignment 5](Assignment5.html)\
-[Assignment 6](Assignemnt6.html)
+[Assignment 6](Assignemnt6.html)\
+[Assignment 7](Assignment_7.html)\
+[Picture of Graph](abc.png)

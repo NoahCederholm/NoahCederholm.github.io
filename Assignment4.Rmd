@@ -76,7 +76,7 @@ df$daily_death <- case_when(
 
 - Create variable `month2` that takes three values: early_month (day of the month from 1-10), mid_month (day of the month from 11-20), and end_month (day of the month > 20).
 ```{r}
-df$month2 <- case_when(
+?df$month2 <- case_when(
     df$monthday <11 ~ 'early_month',
     df$monthday <=20 ~ 'mid_month',
     TRUE ~ 'end_month')

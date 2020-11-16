@@ -44,6 +44,7 @@ colSums(is.na(covidDF))
 #Fixing data types 
 str(covidDF)
 class(covidDF$ï..Date_reported)
+view(df)
 
 library(lubridate)
 covidDF$ï..Date_reported <- ymd(covidDF$ï..Date_reported)
