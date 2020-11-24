@@ -14,6 +14,7 @@
 [Assignment 11](assignment11.html)\
 [Assignment 12](assignment12.html)\
 [Midterm](midterm.html)\
+[Assignment 13](assignment13.html)\
 Final Assignment Apps\
 [Question One](https://noahcederholm.shinyapps.io/shiny/?_ga=2.164973052.2104494647.1606153018-1243729991.1606153018)\
 [Question Two](https://noahcederholm.shinyapps.io/Question2/?_ga=2.164973052.2104494647.1606153018-1243729991.1606153018)\
