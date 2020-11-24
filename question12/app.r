@@ -28,7 +28,7 @@ ui <- navbarPage("Navbar!",
                               ),
                               
                               sliderInput(inputId = "yearID",
-                                          "Select Age Range:",
+                                          "Select Year Range:",
                                           min = min(d$yearID, na.rm=TRUE),
                                           max = max(d$yearID, na.rm=TRUE),
                                           value= c(min(d$yearID),max(d$yearID))
@@ -73,7 +73,7 @@ ui <- navbarPage("Navbar!",
                               ),
                               
                               sliderInput(inputId = "NLyearID",
-                                          "Select Age Range:",
+                                          "Select Year Range:",
                                           min = min(d$yearID, na.rm=TRUE),
                                           max = max(d$yearID, na.rm=TRUE),
                                           value= c(min(d$yearID),max(d$yearID))
