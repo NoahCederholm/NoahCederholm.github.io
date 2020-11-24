@@ -1,0 +1,166 @@
+library(tidyverse)
+library(shiny)
+
+d = read_csv('Teams.csv')
+
+variables_names = names(d)
+
+ui <- navbarPage("Navbar!",
+                 tabPanel("AL East Plot",
+                          
+                          sidebarLayout(
+                            
+                            sidebarPanel(
+                              
+                              checkboxGroupInput(inputId = "teamID", label = "Select AL East Team",
+                                                 c("BOS", "NYA", "TBA", "BAL", "TOR"), inline = TRUE
+                                                 
+                              ),
+                              selectInput(
+                                inputId ="var1",
+                                label = "Select a Variable",
+                                choices = variables_names, selected = "yearID"
+                              ),
+                              selectInput(
+                                inputId ="var2",
+                                label = "Select a Variable",
+                                choices = variables_names, selected = "HR"
+                              ),
+                              
+                              sliderInput(inputId = "yearID",
+                                          "Select Age Range:",
+                                          min = min(d$yearID, na.rm=TRUE),
+                                          max = max(d$yearID, na.rm=TRUE),
+                                          value= c(min(d$yearID),max(d$yearID))
+                              ),
+                              
+                              radioButtons(inputId = "plot_choice", 
+                                           label = h3("Select Plot:"),
+                                           choices = c("Scatter Plot" = "point",
+                                                       "Line Plot" = "line"),
+                                           selected = 'point'
+                              ), 
+                              
+     
+                            ),
+                            
+                            mainPanel(
+                              plotOutput(outputId = 'show_plot')
+                            )
+                          )
+                 ),
+                 
+                 
+                 tabPanel("NL East",
+                          
+                          sidebarLayout(
+                            
+                            sidebarPanel(
+                              
+                              checkboxGroupInput(inputId = "NLteamID", label = "Select NL East Team",
+                                                 c("ATL", "PHI", "MIA", "NYN", "WAS"), inline = TRUE
+                                                 
+                              ),
+                              selectInput(
+                                inputId ="NLvar1",
+                                label = "Select a Variable",
+                                choices = variables_names, selected = "yearID"
+                              ),
+                              selectInput(
+                                inputId ="NLvar2",
+                                label = "Select a Variable",
+                                choices = variables_names, selected = "HR"
+                              ),
+                              
+                              sliderInput(inputId = "NLyearID",
+                                          "Select Age Range:",
+                                          min = min(d$yearID, na.rm=TRUE),
+                                          max = max(d$yearID, na.rm=TRUE),
+                                          value= c(min(d$yearID),max(d$yearID))
+                              ),
+                              
+                              radioButtons(inputId = "NLplot_choice", 
+                                           label = h3("Select Plot:"),
+                                           choices = c("Scatter Plot" = "point",
+                                                       "Line Plot" = "line"),
+                                           selected = 'point'
+                              ), 
+                              
+                            ),
+                            
+                            mainPanel(
+                              plotOutput(outputId = 'show_plot2')
+                            )
+                          )
+                 )
+)
+
+# server is a function! 
+server <- function(input, output) {
+  
+  
+  output$show_plot <- renderPlot({
+    
+    v1 = input$var1
+    v2 = input$var2
+    v3 = input$teamID
+    
+    
+    
+    library(ggplot2)
+    
+    if(input$plot_choice == 'point')
+      
+    {
+      d <- d %>% filter(teamID %in% input$teamID, yearID>input$yearID[1], yearID<input$yearID[2])
+      ggplot(d, aes(x = d[[v1]], y = d[[v2]]))+
+        geom_point()+
+        labs(x = v1, y = v2)
+    }
+    
+    else
+    {
+      d <- d %>% filter(teamID %in% input$teamID, yearID>input$yearID[1], yearID<input$yearID[2])
+      ggplot(d, aes(x = d[[v1]], y = d[[v2]]))+
+        geom_line()+
+        labs(x = v1, y = v2)
+    }
+    
+    
+    
+  })
+  
+  output$show_plot2 <- renderPlot({
+    
+    NLv1 = input$NLvar1
+    NLv2 = input$NLvar2
+    NLv3 = input$NLteamID
+    
+    
+    
+    library(ggplot2)
+    
+    if(input$NLplot_choice == 'point')
+      
+    {
+      d <- d %>% filter(teamID %in% input$NLteamID, yearID>input$NLyearID[1], yearID<input$NLyearID[2])
+      ggplot(d, aes(x = d[[NLv1]], y = d[[NLv2]]))+
+        geom_point()+
+        labs(x = NLv1, y = NLv2)
+    }
+    
+    else
+    {
+      d <- d %>% filter(teamID %in% input$NLteamID, yearID>input$NLyearID[1], yearID<input$NLyearID[2])
+      ggplot(d, aes(x = d[[NLv1]], y = d[[NLv2]]))+
+        geom_line()+
+        labs(x = NLv1, y = NLv2)
+    }
+    
+    
+    
+  })
+  
+}
+# app
+shinyApp(ui = ui, server = server)

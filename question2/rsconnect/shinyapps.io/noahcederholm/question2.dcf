@@ -1,0 +1,12 @@
+name: question2
+title: question2
+username:
+account: noahcederholm
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3289821
+bundleId: 3896387
+url: https://noahcederholm.shinyapps.io/Question2/
+when: 1606158773.06027
+asMultiple: FALSE
+asStatic: FALSE

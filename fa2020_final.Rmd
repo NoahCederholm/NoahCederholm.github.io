@@ -1,0 +1,185 @@
+
+---
+output: 
+  html_document:
+  pdf_document: default
+  word_document: default
+title: "Final Project - Building Shiny Apps"
+---
+
+-------
+
+**Submission Guideline:**  Include to your Github page the link of the app for each question from 1-12. You could also embed all your shiny apps in an Rmarkdown.  See Question 4 for how to embed shiny apps in a Rmarkdown file.
+
+-------
+
+### Question 1.
+
+Install the following packages `shiny`, `packrat`, `rsconnect`. 
+
+```{r}
+library(rsconnect)
+library(shiny)
+library(packrat)
+```
+
+
+In this question, you will build and publish your first shiny app. Following these steps to do so
+
+1. Create a new R Script (File -> New R Script). 
+
+2. Copy [these code](c1.R) to the file 
+
+3. Save the file as app.R file into a newly created folder. 
+
+4. Press `Ctrl + Shift + Enter` to run the app locally. 
+
+5. Go to https://www.shinyapps.io/
+
+6. Create an account 
+
+7. Go to https://www.shinyapps.io/admin/#/dashboard.  Copy the secret code. 
+
+It should look like this
+
+
+```{r, eval=FALSE}
+rsconnect::setAccountInfo(name='fall20',
+			  token='E130D64F22776383660DA7EA5251EC04',
+			  secret='mJI7rgq2Wf46g2Wf46g2WNOa+E6NRqr26yG3N5')
+```
+
+8. Go back to the app (If you closed it, hit `Ctrl + Shift + Enter` to reopen it), click to `Publish` on the top right corner. 
+
+9.  Paste the secret code and follow the instruction to publish the app on the Internet. 
+
+-------
+
+### Question 2
+
+Write a shiny app that can plot barplot of two categorical variables in the titanic dataset, [Example of the barplot](https://bryantstats.github.io/math421/slides/6_viz.html#39).
+
+[Similar Apps](https://fall20.shinyapps.io/app2/) and [Codes](gganimate/shiny_fa20/a2.R)
+
+Notice:  Two different shiny apps should be in two different folders. 
+
+-------
+
+### Question 3
+
+Write a shiny app that can plot barplot of two categorical variables in an uploaded dataset, [Example of the barplot](https://bryantstats.github.io/math421/slides/6_viz.html#39).
+
+[Similar Apps](https://fall20.shinyapps.io/app3/) and [Codes](gganimate/shiny_fa20/a3.R)
+
+-------
+
+### Question 4
+
+Write a shiny app that can plot the scatter plot of two numeric variables and colored by a categorical variable in an uploaded dataset. Example of the plot: https://bryantstats.github.io/math421/slides/6_viz.html#15
+
+Notice: that you can only run 5 apps on shinyapps.io.  If you are running out of apps, you may want to create another account and use multiple accounts.  You may want to try publishing a few times. You could also embed all your shiny apps in an Rmarkdown.  Do the follows to embed an shiny app to an rmarkdown. 
+
+- Create an Rmarkdown
+
+- Insert a code cell (`Ctrl + Alt + I`)
+
+- Copy the codes of the shiny to the code cell
+
+- Knit it 
+
+- When asked, choose `Yes, Always.`
+
+- Here is an example: https://fa20.shinyapps.io/a9_markdown/
+  
+
+-------
+
+### Question 5 
+
+Write a shiny app create a plot for the titanic dataset.  The user inputs two variables and can change the range of `Age` (i.e., use `sliderInput`). 
+
+[Similar Apps](https://fall20.shinyapps.io/app2_1/) and [Codes](gganimate/shiny_fa20/a2_1.R)
+
+-------
+
+### Question 6
+
+Write a shiny app create plots for the titanic dataset. The user inputs two variables and can choose a multiple choice option (i.e., use`radioButtons`). 
+
+[Similar Apps](https://fa20.shinyapps.io/app2_2/) and [Codes](gganimate/shiny_fa20_2/a2_2.R)
+
+-------
+
+### Question 7
+
+Write a shiny app create a plot for the titanic dataset. The user inputs two variables and can choose a tick on some options of a variable (i.e., use`checkboxGroupInput`). 
+
+[Similar Apps](https://fa20.shinyapps.io/app2_3/) and [Codes](gganimate/shiny_fa20_2/a2_3.R)
+
+-------
+
+### Question 8
+
+Write a shiny app create a plot for the titanic dataset. Make uses of `selectInput`, `sliderInput`, `radioButtons`, and `checkboxGroupInput`. 
+
+-------
+
+### Question 9 
+
+Use the below data to write this shiny app: https://fall20.shinyapps.io/app9/.  Check out the app carefully to see its features. 
+
+The data: https://covidtracking.com/data/download/all-states-history.csv
+
+
+-------
+
+### Question 10 
+
+Make uses of `selectInput`, `sliderInput`, `radioButtons`, and `checkboxGroupInput` to write the second app on the data used on question 9. 
+
+The data: https://covidtracking.com/data/download/all-states-history.csv
+
+-------
+
+### Question 11
+
+Write a shiny app on own selected data.  Make uses of `selectInput`, `sliderInput`, `radioButtons`, and `checkboxGroupInput`. 
+
+
+-------
+
+### Question 12
+
+Write an app that make uses of `selectInput`, `sliderInput`, `radioButtons`, `checkboxGroupInput` and `navbarPage`.
+
+This below example shows how to use `navbarPage`
+
+- [Exmple App](https://fa20.shinyapps.io/app2_4/) 
+- [Codes](gganimate/shiny_nav/a2_4.R)
+
+-------
+
+### Question 13
+
+Present your shiny app in Question 12 on the final exam day. Present the features of your app and discuss the codes of the apps. The presentation should be accessible to ones that have no experience with shiny coding but know R. 
+
+-------
+
+### References
+
+
+Check out Shiny official tutorial: https://shiny.rstudio.com/tutorial/
+
+Check out Shiny Galary: https://shiny.rstudio.com/gallery/
+
+Pairs of render and output: https://bookdown.org/weicheng/shinyTutorial/images/outputs.png
+
+Check out some shiny layouts here: https://shiny.rstudio.com/articles/layout-guide.html
+
+Check out shiny dynamic UI here
+
+https://shiny.rstudio.com/gallery/dynamic-ui.html
+
+https://shiny.rstudio.com/articles/dynamic-ui.html
+
+-------

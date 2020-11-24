@@ -1,0 +1,94 @@
+library(tidyverse)
+library(shiny)
+
+d = read_csv('https://covidtracking.com/data/download/all-states-history.csv')
+
+variables_names = names(d)
+
+ui <- fluidPage(
+  
+  titlePanel("Density Plot"),
+  
+  sidebarLayout(
+    
+    sidebarPanel(
+      
+      checkboxGroupInput(inputId = "state", label = "Select State Category",
+                         c("CA", "FL", "TX", "MA", "OH"), inline = TRUE
+      
+    ),
+    selectInput(
+      inputId ="var1",
+      label = "Select a Variable",
+      choices = variables_names, selected = "date"
+    ),
+      selectInput(
+        inputId ="var2",
+        label = "Select a Variable",
+        choices = variables_names, selected = "positive"
+      ),
+      
+    sliderInput(inputId = "date",
+                "Select Age Range:",
+                min = min(d$date, na.rm=TRUE),
+                max = max(d$date, na.rm=TRUE),
+                value= c(min(d$date),max(d$date))
+    ),
+      
+      radioButtons(inputId = "plot_choice", 
+                   label = h3("Select Plot:"),
+                   choices = c("Scatter Plot" = "point",
+                               "Line Plot" = "line"),
+                   selected = 'point'
+      ), 
+      
+
+      
+      
+    ),
+    # Main panel for displaying outputs ----
+    mainPanel(
+      
+      # Output: Histogram ----
+      
+      plotOutput(outputId = 'show_plot')
+    )
+  )
+)
+
+# server is a function! 
+server <- function(input, output) {
+  
+  
+  output$show_plot <- renderPlot({
+    
+    v1 = input$var1
+    v2 = input$var2
+    
+    
+    library(ggplot2)
+    
+    if(input$plot_choice == 'point')
+      
+    {
+      d <- d %>% filter(state %in% input$state, date>input$date[1], date<input$date[2])
+      ggplot(d, aes(x = d[[v1]], y = d[[v2]]))+
+        geom_point()+
+        labs(x = v1, y = v2)
+    }
+    
+    else
+    {
+      d <- d %>% filter(state %in% input$state, date>input$date[1], date<input$date[2])
+      ggplot(d, aes(x = d[[v1]], y = d[[v2]]))+
+        geom_line()+
+        labs(x = v1, y = v2)
+    }
+    
+    
+    
+  })
+  
+}
+# app
+shinyApp(ui = ui, server = server)
