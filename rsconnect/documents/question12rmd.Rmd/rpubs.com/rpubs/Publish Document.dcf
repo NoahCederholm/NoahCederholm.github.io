@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/695464/46f5f84bd80343d191768fa1853c1e60
+bundleId: https://api.rpubs.com/api/v1/document/695464/46f5f84bd80343d191768fa1853c1e60
+url: http://rpubs.com/ncederholm/695464
+when: 1606250330.00503
